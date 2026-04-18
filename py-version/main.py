@@ -39,7 +39,7 @@ repeat = True
 while repeat:
      for gamemode in gamemodes:
           print(gamemode)
-     chosen_gamemode  = input("\n Escolha um tema: ")
+     chosen_gamemode  = input("\n Escolha um tema (não esqueça dos acentos): ")
      for gamemode in gamemodes:
           if chosen_gamemode.lower() == gamemode:
                chosen_gamemode = gamemode
@@ -69,22 +69,25 @@ while tries != 0:
             print(" " ,i, end="")
      print("\n", guesses)                
      guess = input("\n Digite uma letra: ").lower()
-     if guess in ["a", "e", "i", "o", "u"]:
-         guess += (verify_vowel(guess, chosen_word.lower()))
-     matches = []
-     for i in guess:
-         if i in chosen_word.lower(): 
-              matches.append(i)
-     if len(matches) != 0:
-         for l in matches:
-               for i in range(len(chosen_word)):
-                    if l == chosen_word.lower()[i]:
-                         guesses[i] = l
+     if guess in wrong_guesses or guess in guesses:
+          print(f"Letra {guess} já testada")
      else:
-          wrong_guesses += guess
-          tries -= 1
-     if "_" not in guesses:
-        tries = 0
+          if guess in ["a", "e", "i", "o", "u"]:
+               guess += (verify_vowel(guess, chosen_word.lower()))
+          matches = []
+          for i in guess:
+               if i in chosen_word.lower(): 
+                    matches.append(i)
+          if len(matches) != 0:
+               for l in matches:
+                    for i in range(len(chosen_word)):
+                         if l == chosen_word.lower()[i]:
+                              guesses[i] = l
+          else:
+               wrong_guesses += guess
+               tries -= 1
+          if "_" not in guesses:
+               tries = 0
 
 print("\n", guesses)
 if tries == 0 and "_" in guesses:
