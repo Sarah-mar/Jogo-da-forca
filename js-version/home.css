@@ -1,0 +1,47 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    gap: 50px;
+    background-color: #f6bebe;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.title {
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 159px;
+    font-weight: 600px;
+    color: #F0104A;
+}
+
+.start-button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    color: #FFFFFF;
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 35px;
+    background-color: #ec557d;
+    border: 20px;
+    padding: 16px 32px;
+    height: fit-content;
+    width: fit-content;
+}
