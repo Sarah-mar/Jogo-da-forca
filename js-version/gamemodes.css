@@ -48,8 +48,9 @@
     align-items: center;
     min-height: 100vh;
     width: 100vw;
+    padding: 50px;
     margin: 0;
-    gap: 50px;
+    gap: 30px;
 }
 
 .title-container {
@@ -60,15 +61,24 @@
 
 .title {
     font-family: "Pixelify Sans", sans-serif;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.516);
     font-optical-sizing: auto;
-    text-shadow: 5px 5px 5px rgba(255, 255, 255, 0.516);
-    gap: 20px;
-    font-size: 159px;
+    font-size: 70px;
     font-weight: 600px;
     color: #F0104A;
 }
 
-.start-button {
+.options-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin: 0;
+    gap: 20px;
+}
+
+.options {
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -76,19 +86,16 @@
     font-family: "Pixelify Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    font-size: 35px;
+    font-size: 30px;
     background-color: #ec557d;
-    border: 20px;
-    height: fit-content;
-    max-width: fit-content;
-    padding: 12px 48px;
-    margin-bottom: 24px;
+    height: 72px;
+    width: 240px;
+    padding: 12px 0px;
     transition: background-color .3s;
 }
 
-.start-button:hover {
+.options:hover {
     background-color: #f07898;
-    /* mais claro */
 }
 
 @keyframes moveStars {
