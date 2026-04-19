@@ -24,21 +24,8 @@ window.addEventListener('load', () => {
     generateStars('.layer3', 70);
 });
 
-document.querySelector(".options").addEventListener("click", function () {
-    window.location.href = "game.html"
-});
-
-let tema = null;
-
-function selectTheme(event) {
-    theme = event.target.id;
-    console.log("Tema selecionado:", theme);
-}
-
-const options = document.querySelectorAll('.options');
-
-options.forEach(option => {
-    option.addEventListener('click', selectTheme);
-});
-
-console.log(tema)
+document.querySelectorAll('.options').forEach(option => {
+    option.addEventListener('click', () => {
+        window.location.href = 'game.html';
+    });
+})
