@@ -36,18 +36,61 @@ const themes = {
     ]
 }
 
-let theme = null;
-
-function selectTheme(event) {
-    theme = event.target.id;
-    console.log("Tema selecionado:", theme);
-
+let triesLeft = 7;
+let theme = localStorage.getItem('themeChoice') || "animais";
+function wordSelector(key) {
+    const themeWords = themes[key];
+    return themeWords[Math.floor(Math.random() * themeWords.length)];
 }
 
-const options = document.querySelectorAll('.options');
+function normalize(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
 
-options.forEach(option => {
-    option.addEventListener('click', selectTheme);
-});
+function handleGuess(selectedLetter, word) {
+    const letterContainers = document.querySelectorAll(".letter-container");
+    let found = false;
+
+    const normalizedSelected = normalize(selectedLetter.toLowerCase());
+    const normalizedWord = normalize(word.toLowerCase());
+
+    for (let i = 0; i < normalizedWord.length; i++) {
+        if (normalizedWord[i] === normalizedSelected) {
+            letterContainers[i].textContent = word[i];
+            found = true;
+        }
+    }
+    if (!found) {
+        triesLeft--;
+        console.log(`Errou! Tentativas restantes: ${triesLeft}`);
+    }
+}
+
+function setupGame(chosenTheme) {
+    const container = document.querySelector(".word-container");
+    const word = wordSelector(chosenTheme);
+
+    container.innerHTML = "";
+
+    for (let i = 0; i < word.length; i++) {
+        const newLetter = document.createElement("div");
+        newLetter.classList.add("letter-container");
+        if (word[i] === " ") newLetter.textContent = " ";
+        container.appendChild(newLetter);
+    }
+
+    const alphabet = document.querySelectorAll('.alphabet-box');
+    alphabet.forEach(el => {
+        el.addEventListener('click', () => {
+            if (el.classList.contains('used')) return;
+
+            el.classList.add('used');
+            handleGuess(el.id, word);
+        });
+    });
+}
 
 
+if (theme) {
+    setupGame(theme);
+}
